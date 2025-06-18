@@ -34,4 +34,4 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          systemctl restart apache2
+          sudo -n /usr/bin/systemctl restart apache2
