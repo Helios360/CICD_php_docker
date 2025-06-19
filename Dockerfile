@@ -1,10 +1,17 @@
-FROM php:8.1-apache
+# Utiliser l'image Node officielle
+FROM node:20
 
-# Copier les fichiers de l'application dans le conteneur
-COPY ./public /var/www/html
+# Définir le dossier de travail
+WORKDIR /usr/src/app
 
-# Activer le module rewrite d'Apache
-RUN a2enmod rewrite
+# Copier les fichiers package.json et package-lock.json
+COPY package*.json ./
 
-# Exposer le port 80
-EXPOSE 80
+# Installer les dépendances
+RUN npm install
+
+# Copier le reste des fichiers
+COPY . .
+
+# Lancer le test au démarrage (optionnel)
+CMD [ "npm", "run", "node-test" ]

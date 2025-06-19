@@ -6,7 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8081:80"
+      - "8081:3000"
     volumes:
-      - ./public:/var/www/html
-    container_name: php-apache-dev
+      - .:/usr/src/app
+    container_name: node-dev
+    command: node server.js
